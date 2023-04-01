@@ -39,6 +39,9 @@ public class TransaccionInfo implements Serializable {
     @DynamoDBAttribute
     private String resultado;
 
+    @DynamoDBAttribute
+    private String descripcion;
+
 
     public TransaccionInfo(){}
 
@@ -120,6 +123,14 @@ public class TransaccionInfo implements Serializable {
         return protocol;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public void setProtocol(String protocol) {
         this.protocol = protocol;
     }
@@ -127,4 +138,5 @@ public class TransaccionInfo implements Serializable {
     public String generateUID(){
         return DigestUtils.md5Hex(endPoint);
     }
+
 }

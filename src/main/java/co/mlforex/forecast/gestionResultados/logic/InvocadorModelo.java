@@ -57,6 +57,7 @@ public class InvocadorModelo extends Thread {
                 logger.info("Mensaje notificado");
             }
         } catch (final Exception e) {
+            e.printStackTrace();
             logger.error("Error en InvocadorModelo:llamarModelo" + e.getMessage());
         }
     }

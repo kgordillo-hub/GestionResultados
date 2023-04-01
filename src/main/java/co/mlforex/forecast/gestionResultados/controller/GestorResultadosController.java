@@ -21,6 +21,7 @@ public class GestorResultadosController {
     GestorResultados gestorResultados;
 
     @PostMapping("/llamarModelo")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<String> entrnarModelo(@RequestBody TransaccionInfo transaccionInfo) {
         try {
             gestorResultados.entrenarModelo(transaccionInfo);
@@ -34,6 +35,7 @@ public class GestorResultadosController {
     }
 
     @GetMapping("/consultarResultados/{idUsuario}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<List<TransaccionInfo>> consultarResultadosModelos(@PathVariable String idUsuario) {
         try {
             final List<TransaccionInfo> listaResultados = gestorResultados.getResultados(idUsuario);
@@ -45,6 +47,7 @@ public class GestorResultadosController {
     }
 
     @GetMapping("/consultarResultado/{idTransaccion}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<List<TransaccionInfo>> consultarResultadosPorTransaccion(@PathVariable String idTransaccion) {
         try {
             final List<TransaccionInfo> resultado = gestorResultados.getResultado(idTransaccion);
