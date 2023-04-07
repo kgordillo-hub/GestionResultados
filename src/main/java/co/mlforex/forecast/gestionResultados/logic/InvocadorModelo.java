@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Base64;
 
 
@@ -66,10 +67,12 @@ public class InvocadorModelo extends Thread {
         String contentType = protocol.equalsIgnoreCase("POST") ? "application/json" : "text/plain;charset=UTF-8";
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(new URI(endPoint))
+                .timeout(Duration.ofSeconds(300))
                 .headers("Content-Type", contentType)
                 .POST(HttpRequest.BodyPublishers.ofString(request))
                 .build();
-        var client = HttpClient.newHttpClient();
+        //var client = HttpClient.newHttpClient();
+        var client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(300)).build();
         var response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
         return response;
