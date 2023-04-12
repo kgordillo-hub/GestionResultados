@@ -67,12 +67,12 @@ public class InvocadorModelo extends Thread {
         String contentType = protocol.equalsIgnoreCase("POST") ? "application/json" : "text/plain;charset=UTF-8";
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(new URI(endPoint))
-                .timeout(Duration.ofSeconds(300))
+                .timeout(Duration.ofSeconds(600))
                 .headers("Content-Type", contentType)
                 .POST(HttpRequest.BodyPublishers.ofString(request))
                 .build();
         //var client = HttpClient.newHttpClient();
-        var client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(300)).build();
+        var client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(600)).build();
         var response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
         return response;
